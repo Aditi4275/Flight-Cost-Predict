@@ -3,20 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{title}}</title>
+    <title>{{title}} - Flight Cost Predictor</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4361ee',
+                        secondary: '#3f37c9',
+                        accent: '#4cc9f0',
+                        dark: '#212529',
+                        light: '#f8f9fa'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+        
+        .navbar {
+            background: rgba(40, 90, 200, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(67, 97, 238, 0.85), rgba(63, 55, 201, 0.85)), url('https://images.unsplash.com/photo-1569425309191-b50c18d00df7?ixlib=rb-4.0.3') no-repeat center center;
+            background-size: cover;
+        }
+        
+        .plane-icon {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1);
+            transition: all 0.3s ease;
+        }
+        
+        .card {
+            transition: all 0.3s ease;
+            border-radius: 15px;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .btn-custom {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(76, 201, 240, 0.4);
+            border-radius: 50px;
+        }
+        
+        .btn-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(76, 201, 240, 0.6);
+        }
+        
+        .result-card {
+            animation: fadeIn 0.5s ease-in;
+            border-radius: 15px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .input-field {
+            border-width: 2px;
+            transition: all 0.3s ease;
+        }
+        
+        .input-field:focus {
+            border-color: #4cc9f0;
+            box-shadow: 0 0 0 3px rgba(76, 201, 240, 0.3);
+        }
+        
+        footer {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+        }
+    </style>
 </head>
-<body>
-    <h1>Welcome to the {{ title }} page!</h1>
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            {% for message in messages %}
-                <div>{{ message }}</div>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
+<body class="bg-gradient-to-br from-gray-100 to-blue-200 min-h-screen">
+    <!-- Navigation -->
+    <nav class="navbar sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="{{ url_for('home') }}" class="text-2xl font-bold text-white flex items-center">
+                <i class="fas fa-plane mr-2 text-accent"></i>
+                FlightPredict
+            </a>
+            <a href="https://github.com/Aditi4275/Flight-Cost-Predict" target="_blank" class="bg-gray-800 hover:bg-gray-900 text-white font-bold py-2 px-4 rounded-lg inline-flex items-center transition duration-300">
+                <i class="fab fa-github mr-2"></i>Github
+            </a>
+        </div>
+    </nav>
 
-    {% block content %}
-    {% endblock %}
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
 
+    <!-- Footer -->
+    <footer class="py-6 text-center text-gray-600 text-sm mt-10">
+        <div class="container mx-auto px-4">
+            <p>&copy; 2024 Flight Cost Predictor | Machine Learning Model</p>
+        </div>
+    </footer>
+
+    <!-- Custom JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effect to cards
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
 </body>
 </html>

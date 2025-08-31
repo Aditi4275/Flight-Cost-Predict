@@ -1,106 +1,153 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<form action="" method="post">
-    {{ form.hidden_tag() }}
-    <div>
-        {{ form.airline.label }}
-        {{ form.airline }}
-        {% if form.airline.errors %}
-            {% for error in form.airline.errors %}
-                <div>{{ error }}</div>
-            {% endfor %}
-        {% endif %}
+<div class="container mx-auto px-4 py-10">
+    <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-10">
+            <h1 class="text-3xl md:text-4xl font-bold text-dark mb-4">Flight Cost Prediction</h1>
+            <p class="text-gray-600 text-lg max-w-2xl mx-auto">Enter your flight details below to get an instant price prediction using our advanced machine learning model</p>
+        </div>
+        
+        <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 card">
+            <form action="" method="post" class="space-y-6">
+                {{ form.hidden_tag() }}
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Airline -->
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">{{ form.airline.label }}</label>
+                        {{ form.airline(class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent input-field") }}
+                        {% if form.airline.errors %}
+                            {% for error in form.airline.errors %}
+                                <div class="text-red-500 text-sm mt-1">{{ error }}</div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Date of Journey -->
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">{{ form.date_of_journey.label }}</label>
+                        {{ form.date_of_journey(class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent input-field") }}
+                        {% if form.date_of_journey.errors %}
+                            {% for error in form.date_of_journey.errors %}
+                                <div class="text-red-500 text-sm mt-1">{{ error }}</div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Source -->
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">{{ form.source.label }}</label>
+                        {{ form.source(class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent input-field") }}
+                        {% if form.source.errors %}
+                            {% for error in form.source.errors %}
+                                <div class="text-red-500 text-sm mt-1">{{ error }}</div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Destination -->
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">{{ form.destination.label }}</label>
+                        {{ form.destination(class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent input-field") }}
+                        {% if form.destination.errors %}
+                            {% for error in form.destination.errors %}
+                                <div class="text-red-500 text-sm mt-1">{{ error }}</div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Departure Time -->
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">{{ form.dep_time.label }}</label>
+                        {{ form.dep_time(class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent input-field") }}
+                        {% if form.dep_time.errors %}
+                            {% for error in form.dep_time.errors %}
+                                <div class="text-red-500 text-sm mt-1">{{ error }}</div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Arrival Time -->
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">{{ form.arrival_time.label }}</label>
+                        {{ form.arrival_time(class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent input-field") }}
+                        {% if form.arrival_time.errors %}
+                            {% for error in form.arrival_time.errors %}
+                                <div class="text-red-500 text-sm mt-1">{{ error }}</div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Duration -->
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">{{ form.duration.label }} (in minutes)</label>
+                        {{ form.duration(class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent input-field") }}
+                        {% if form.duration.errors %}
+                            {% for error in form.duration.errors %}
+                                <div class="text-red-500 text-sm mt-1">{{ error }}</div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Total Stops -->
+                    <div>
+                        <label class="block text-gray-700 font-medium mb-2">{{ form.total_stops.label }}</label>
+                        {{ form.total_stops(class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent input-field") }}
+                        {% if form.total_stops.errors %}
+                            {% for error in form.total_stops.errors %}
+                                <div class="text-red-500 text-sm mt-1">{{ error }}</div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    
+                    <!-- Additional Info -->
+                    <div class="md:col-span-2">
+                        <label class="block text-gray-700 font-medium mb-2">{{ form.additional_info.label }}</label>
+                        {{ form.additional_info(class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent input-field") }}
+                        {% if form.additional_info.errors %}
+                            {% for error in form.additional_info.errors %}
+                                <div class="text-red-500 text-sm mt-1">{{ error }}</div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <!-- Submit Button -->
+                <div class="pt-6">
+                    {{ form.submit(class="w-full bg-primary hover:bg-secondary text-white font-bold py-4 px-6 rounded-lg text-lg transition duration-300 cursor-pointer transform hover:scale-[1.02]") }}
+                </div>
+            </form>
+            
+            <!-- Result Display -->
+            {% if output %}
+            <div class="mt-10">
+                <div class="result-card bg-gradient-to-r from-primary to-secondary rounded-xl p-8 text-center text-white shadow-lg">
+                    <h3 class="text-2xl font-semibold mb-4">Prediction Result</h3>
+                    <div class="text-4xl font-bold">
+                        {% if "predicted price" in output %}
+                            {{ output | replace("The predicted price is ", "") }}
+                        {% else %}
+                            {{ output }}
+                        {% endif %}
+                    </div>
+                    <div class="mt-4">
+                        <i class="fas fa-plane plane-icon text-3xl"></i>
+                    </div>
+                    <div class="mt-6">
+                        <p class="text-blue-100">This prediction is based on historical data and current market trends</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            
+            <!-- Home Link -->
+            <div class="mt-8 text-center">
+                <a href="{{ url_for('home') }}" class="text-primary hover:text-secondary font-medium inline-flex items-center transition duration-300">
+                    <i class="fas fa-arrow-left mr-2"></i> Back to Home
+                </a>
+            </div>
+        </div>
     </div>
-    <br>
-    <div>
-        {{ form.date_of_journey.label }}
-        {{ form.date_of_journey }}
-        {% if form.date_of_journey.errors %}
-            {% for error in form.date_of_journey.errors %}
-                <div>{{ error }}</div>
-            {% endfor %}
-        {% endif %}
-    </div>
-    <br>
-    <div>
-        {{ form.source.label }}
-        {{ form.source }}
-        {% if form.source.errors %}
-            {% for error in form.source.errors %}
-                <div>{{ error }}</div>
-            {% endfor %}
-        {% endif %}
-    </div>
-    <br>
-    <div>
-        {{ form.destination.label }}
-        {{ form.destination }}
-        {% if form.destination.errors %}
-            {% for error in form.destination.errors %}
-                <div>{{ error }}</div>
-            {% endfor %}
-        {% endif %}
-    </div>
-    <br>
-    <div>
-        {{ form.dep_time.label }}
-        {{ form.dep_time }}
-        {% if form.dep_time.errors %}
-            {% for error in form.dep_time.errors %}
-                <div>{{ error }}</div>
-            {% endfor %}
-        {% endif %}
-    </div>
-    <br>
-    <div>
-        {{ form.arrival_time.label }}
-        {{ form.arrival_time }}
-        {% if form.arrival_time.errors %}
-            {% for error in form.arrival_time.errors %}
-                <div>{{ error }}</div>
-            {% endfor %}
-        {% endif %}
-    </div>
-    <br>
-    <div>
-        {{ form.duration.label }}
-        {{ form.duration }}
-        {% if form.duration.errors %}
-            {% for error in form.duration.errors %}
-                <div>{{ error }}</div>
-            {% endfor %}
-        {% endif %}
-    </div>
-    <br>
-    <div>
-        {{ form.total_stops.label }}
-        {{ form.total_stops }}
-        {% if form.total_stops.errors %}
-            {% for error in form.total_stops.errors %}
-                <div>{{ error }}</div>
-            {% endfor %}
-        {% endif %}
-    </div>
-    <br>
-    <div>
-        {{ form.additional_info.label }}
-        {{ form.additional_info }}
-        {% if form.additional_info.errors %}
-            {% for error in form.additional_info.errors %}
-                <div>{{ error }}</div>
-            {% endfor %}
-        {% endif %}
-    </div>
-    <br>
-    <div>{{ form.submit() }}</div>
-    <br>
-    <div>
-        {{ output }}
-    </div>
-    <br>
-    <div>
-        <p>Redirect to Homepage? <a href="{{url_for('home') }}">Home</a></p>
-    </div>
-</form>
+</div>
 {% endblock content %}

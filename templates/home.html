@@ -1,8 +1,140 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div>
-    <h3>This is a Flight Prediction model based on Machine Learning</h3>
-    <a href = "{{ url_for('predict')}}">Click here!</a>
+<!-- Hero Section -->
+<div class="hero-section py-20 md:py-28 text-white">
+    <div class="container mx-auto px-4 text-center">
+        <div class="flex justify-center mb-8">
+            <div class="plane-icon text-7xl md:text-8xl drop-shadow-lg">
+                <i class="fas fa-plane"></i>
+            </div>
+        </div>
+        <h1 class="text-4xl md:text-6xl font-bold mb-6 drop-shadow-lg">Flight Cost Predictor</h1>
+        <p class="text-xl md:text-2xl max-w-3xl mx-auto mb-12 text-blue-100 drop-shadow">Predict your flight costs instantly with our advanced machine learning model</p>
+        <div class="mt-8">
+            <a href="{{ url_for('predict') }}" class="btn-custom bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold py-4 px-10 rounded-full text-xl inline-flex items-center transition-all duration-300 transform hover:scale-105 shadow-xl">
+                Predict Your Flight Cost <i class="fas fa-arrow-right ml-3"></i>
+            </a>
+        </div>
+    </div>
 </div>
+
+<!-- Features Section -->
+<div class="py-16 bg-gradient-to-b from-white to-blue-50">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-gray-800">Why Choose Our Flight Predictor?</h2>
+        <p class="text-gray-600 text-center max-w-2xl mx-auto mb-14 text-lg">Smart features designed to give you the best flight cost predictions</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <!-- Feature 1 -->
+            <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-2">
+                <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mb-6 group-hover:bg-blue-200 transition-colors">
+                    <i class="fas fa-brain text-blue-600 text-3xl"></i>
+                </div>
+                <h3 class="text-2xl font-semibold mb-4 text-gray-800">AI-Powered Insights</h3>
+                <p class="text-gray-600 leading-relaxed">Advanced algorithms analyze thousands of flight data points to give you accurate predictions.</p>
+            </div>
+            
+            <!-- Feature 2 -->
+            <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-2">
+                <div class="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-6 group-hover:bg-green-200 transition-colors">
+                    <i class="fas fa-chart-line text-green-600 text-3xl"></i>
+                </div>
+                <h3 class="text-2xl font-semibold mb-4 text-gray-800">Real-Time Pricing</h3>
+                <p class="text-gray-600 leading-relaxed">Get up-to-the-minute pricing trends and forecasts based on current market conditions.</p>
+            </div>
+            
+            <!-- Feature 3 -->
+            <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-2">
+                <div class="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mb-6 group-hover:bg-purple-200 transition-colors">
+                    <i class="fas fa-globe-asia text-purple-600 text-3xl"></i>
+                </div>
+                <h3 class="text-2xl font-semibold mb-4 text-gray-800">Global Coverage</h3>
+                <p class="text-gray-600 leading-relaxed">Comprehensive data from 60+ airlines across major international and domestic routes.</p>
+            </div>
+            
+            <!-- Feature 4 -->
+            <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group transform hover:-translate-y-2">
+                <div class="w-16 h-16 rounded-full bg-amber-100 flex items-center justify-center mb-6 group-hover:bg-amber-200 transition-colors">
+                    <i class="fas fa-bolt text-amber-600 text-3xl"></i>
+                </div>
+                <h3 class="text-2xl font-semibold mb-4 text-gray-800">Instant Results</h3>
+                <p class="text-gray-600 leading-relaxed">Receive your personalized flight cost prediction in seconds, not hours.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- How It Works Section -->
+<div class="py-16 bg-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-6 text-gray-800">How It Works</h2>
+        <p class="text-gray-600 text-center max-w-2xl mx-auto mb-14 text-lg">Get accurate flight predictions in just three simple steps</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <!-- Step 1 -->
+            <div class="text-center">
+                <div class="w-20 h-20 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-6">
+                    <span class="text-2xl font-bold text-blue-600">1</span>
+                </div>
+                <h3 class="text-2xl font-semibold mb-4 text-gray-800">Enter Flight Details</h3>
+                <p class="text-gray-600">Provide your flight information including airline, date, departure time, and route.</p>
+            </div>
+            
+            <!-- Step 2 -->
+            <div class="text-center">
+                <div class="w-20 h-20 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-6">
+                    <span class="text-2xl font-bold text-blue-600">2</span>
+                </div>
+                <h3 class="text-2xl font-semibold mb-4 text-gray-800">AI Analysis</h3>
+                <p class="text-gray-600">Our machine learning model processes your data with thousands of similar flights.</p>
+            </div>
+            
+            <!-- Step 3 -->
+            <div class="text-center">
+                <div class="w-20 h-20 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-6">
+                    <span class="text-2xl font-bold text-blue-600">3</span>
+                </div>
+                <h3 class="text-2xl font-semibold mb-4 text-gray-800">Get Prediction</h3>
+                <p class="text-gray-600">Receive an instant, accurate prediction to help plan your travel budget.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Stats Section -->
+<div class="py-16 bg-gradient-to-r from-blue-600 to-indigo-700 text-white">
+    <div class="container mx-auto px-4">
+        <h2 class="text-3xl md:text-4xl font-bold text-center mb-6">Trusted by Travelers Worldwide</h2>
+        <p class="text-blue-100 text-center max-w-2xl mx-auto mb-14 text-lg">Join thousands who save money with our predictions</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div class="p-8 bg-white bg-opacity-10 rounded-xl backdrop-blur-sm border border-white border-opacity-20">
+                <div class="text-5xl md:text-6xl font-bold mb-4">1K+</div>
+                <div class="text-xl md:text-2xl">Accurate Predictions</div>
+            </div>
+            <div class="p-8 bg-white bg-opacity-10 rounded-xl backdrop-blur-sm border border-white border-opacity-20">
+                <div class="text-5xl md:text-6xl font-bold mb-4">97%</div>
+                <div class="text-xl md:text-2xl">Accuracy Rate</div>
+            </div>
+            <div class="p-8 bg-white bg-opacity-10 rounded-xl backdrop-blur-sm border border-white border-opacity-20">
+                <div class="text-5xl md:text-6xl font-bold mb-4">25+</div>
+                <div class="text-xl md:text-2xl">Airlines Covered</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA Section -->
+<div class="py-20 bg-gradient-to-r from-blue-50 to-indigo-50">
+    <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-gray-800">Ready to Save on Your Next Flight?</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto mb-10 text-lg">Join thousands of travelers who use our service to plan better trips</p>
+        <a href="{{ url_for('predict') }}" class="btn-custom bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white font-bold py-4 px-10 rounded-full text-xl inline-flex items-center transition-all duration-300 transform hover:scale-105 shadow-lg">
+            Get Started Now <i class="fas fa-arrow-right ml-3"></i>
+        </a>
+    </div>
+</div>
+
+
 {% endblock content %}
