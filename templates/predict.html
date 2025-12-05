@@ -9,113 +9,89 @@
         </div>
         
         <div class="bg-white rounded-2xl shadow-xl p-6 md:p-8 card">
-            <form action="" method="post" class="space-y-6">
-                {{ form.hidden_tag() }}
+            <form action="/predict" method="post" class="space-y-6">
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Airline -->
                     <div>
-                        <label class="block text-gray-700 font-medium mb-2">{{ form.airline.label }}</label>
-                        {{ form.airline(class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent input-field") }}
-                        {% if form.airline.errors %}
-                            {% for error in form.airline.errors %}
-                                <div class="text-red-500 text-sm mt-1">{{ error }}</div>
+                        <label class="block text-gray-700 font-medium mb-2">Airline</label>
+                        <select name="airline" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent input-field" required>
+                            <option value="" disabled {% if not form_data %}selected{% endif %}>Select Airline</option>
+                            {% for option in options.airline %}
+                                <option value="{{ option }}" {% if form_data and form_data.airline == option %}selected{% endif %}>{{ option }}</option>
                             {% endfor %}
-                        {% endif %}
+                        </select>
                     </div>
                     
                     <!-- Date of Journey -->
                     <div>
-                        <label class="block text-gray-700 font-medium mb-2">{{ form.date_of_journey.label }}</label>
-                        {{ form.date_of_journey(class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent input-field") }}
-                        {% if form.date_of_journey.errors %}
-                            {% for error in form.date_of_journey.errors %}
-                                <div class="text-red-500 text-sm mt-1">{{ error }}</div>
-                            {% endfor %}
-                        {% endif %}
+                        <label class="block text-gray-700 font-medium mb-2">Date of Journey</label>
+                        <input type="date" name="date_of_journey" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent input-field" required value="{{ form_data.date_of_journey if form_data else '' }}">
                     </div>
                     
                     <!-- Source -->
                     <div>
-                        <label class="block text-gray-700 font-medium mb-2">{{ form.source.label }}</label>
-                        {{ form.source(class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent input-field") }}
-                        {% if form.source.errors %}
-                            {% for error in form.source.errors %}
-                                <div class="text-red-500 text-sm mt-1">{{ error }}</div>
+                        <label class="block text-gray-700 font-medium mb-2">Source</label>
+                        <select name="source" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent input-field" required>
+                            <option value="" disabled {% if not form_data %}selected{% endif %}>Select Source</option>
+                            {% for option in options.source %}
+                                <option value="{{ option }}" {% if form_data and form_data.source == option %}selected{% endif %}>{{ option }}</option>
                             {% endfor %}
-                        {% endif %}
+                        </select>
                     </div>
                     
                     <!-- Destination -->
                     <div>
-                        <label class="block text-gray-700 font-medium mb-2">{{ form.destination.label }}</label>
-                        {{ form.destination(class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent input-field") }}
-                        {% if form.destination.errors %}
-                            {% for error in form.destination.errors %}
-                                <div class="text-red-500 text-sm mt-1">{{ error }}</div>
+                        <label class="block text-gray-700 font-medium mb-2">Destination</label>
+                        <select name="destination" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent input-field" required>
+                            <option value="" disabled {% if not form_data %}selected{% endif %}>Select Destination</option>
+                            {% for option in options.destination %}
+                                <option value="{{ option }}" {% if form_data and form_data.destination == option %}selected{% endif %}>{{ option }}</option>
                             {% endfor %}
-                        {% endif %}
+                        </select>
                     </div>
                     
                     <!-- Departure Time -->
                     <div>
-                        <label class="block text-gray-700 font-medium mb-2">{{ form.dep_time.label }}</label>
-                        {{ form.dep_time(class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent input-field") }}
-                        {% if form.dep_time.errors %}
-                            {% for error in form.dep_time.errors %}
-                                <div class="text-red-500 text-sm mt-1">{{ error }}</div>
-                            {% endfor %}
-                        {% endif %}
+                        <label class="block text-gray-700 font-medium mb-2">Departure Time</label>
+                        <input type="time" name="dep_time" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent input-field" required value="{{ form_data.dep_time if form_data else '' }}">
                     </div>
                     
                     <!-- Arrival Time -->
                     <div>
-                        <label class="block text-gray-700 font-medium mb-2">{{ form.arrival_time.label }}</label>
-                        {{ form.arrival_time(class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent input-field") }}
-                        {% if form.arrival_time.errors %}
-                            {% for error in form.arrival_time.errors %}
-                                <div class="text-red-500 text-sm mt-1">{{ error }}</div>
-                            {% endfor %}
-                        {% endif %}
+                        <label class="block text-gray-700 font-medium mb-2">Arrival Time</label>
+                        <input type="time" name="arrival_time" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent input-field" required value="{{ form_data.arrival_time if form_data else '' }}">
                     </div>
                     
                     <!-- Duration -->
                     <div>
-                        <label class="block text-gray-700 font-medium mb-2">{{ form.duration.label }} (in minutes)</label>
-                        {{ form.duration(class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent input-field") }}
-                        {% if form.duration.errors %}
-                            {% for error in form.duration.errors %}
-                                <div class="text-red-500 text-sm mt-1">{{ error }}</div>
-                            {% endfor %}
-                        {% endif %}
+                        <label class="block text-gray-700 font-medium mb-2">Duration (in minutes)</label>
+                        <input type="number" name="duration" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent input-field" required value="{{ form_data.duration if form_data else '' }}">
                     </div>
                     
                     <!-- Total Stops -->
                     <div>
-                        <label class="block text-gray-700 font-medium mb-2">{{ form.total_stops.label }}</label>
-                        {{ form.total_stops(class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent input-field") }}
-                        {% if form.total_stops.errors %}
-                            {% for error in form.total_stops.errors %}
-                                <div class="text-red-500 text-sm mt-1">{{ error }}</div>
-                            {% endfor %}
-                        {% endif %}
+                        <label class="block text-gray-700 font-medium mb-2">Total Stops</label>
+                        <input type="number" name="total_stops" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent input-field" required value="{{ form_data.total_stops if form_data else '' }}">
                     </div>
                     
                     <!-- Additional Info -->
                     <div class="md:col-span-2">
-                        <label class="block text-gray-700 font-medium mb-2">{{ form.additional_info.label }}</label>
-                        {{ form.additional_info(class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent input-field") }}
-                        {% if form.additional_info.errors %}
-                            {% for error in form.additional_info.errors %}
-                                <div class="text-red-500 text-sm mt-1">{{ error }}</div>
+                        <label class="block text-gray-700 font-medium mb-2">Additional Info</label>
+                        <select name="additional_info" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-accent focus:border-transparent input-field" required>
+                            <option value="" disabled {% if not form_data %}selected{% endif %}>Select Additional Info</option>
+                            {% for option in options.additional_info %}
+                                <option value="{{ option }}" {% if form_data and form_data.additional_info == option %}selected{% endif %}>{{ option }}</option>
                             {% endfor %}
-                        {% endif %}
+                        </select>
                     </div>
                 </div>
                 
                 <!-- Submit Button -->
                 <div class="pt-6">
-                    {{ form.submit(class="w-full bg-primary hover:bg-secondary text-white font-bold py-4 px-6 rounded-lg text-lg transition duration-300 cursor-pointer transform hover:scale-[1.02]") }}
+                    <button type="submit" class="w-full bg-primary hover:bg-secondary text-white font-bold py-4 px-6 rounded-lg text-lg transition duration-300 cursor-pointer transform hover:scale-[1.02]">
+                        Predict
+                    </button>
                 </div>
             </form>
             
